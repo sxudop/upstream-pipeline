@@ -13,4 +13,11 @@ echo Tests Completed!'''
       }
     }
   }
+  stage('Publish Event') {
+  steps {
+    script {
+      publishEvent simpleEvent('testingCompleted')
+    }
+  }
+}
 }
