@@ -1,23 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
         echo 'Build the software'
       }
     }
-    stage('Testing') {
+    stage('Test') {
       steps {
-        sh '''sleep 5
-echo Tests Completed!'''
+        sh 'sleep 5'
+        sh 'echo Tests Completed!'
+      }
+    }
+    stage('Publish Event') {
+      steps {
+        script {
+          publishEvent simpleEvent('testingCompleted')
+        }
       }
     }
   }
-  stage('Publish Event') {
-  steps {
-    script {
-      publishEvent simpleEvent('testingCompleted')
-    }
-  }
-}
 }
